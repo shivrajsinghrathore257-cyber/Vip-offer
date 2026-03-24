@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIP Group Offer</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            max-width: 550px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .timer-box {
+            background: #ff4757;
+            color: white;
+            padding: 12px;
+            text-align: center;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        .countdown {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .content {
+            text-align: left;
+        }
+        .btn {
+            display: inline-block;
+            background: #1e3c72;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .contact {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            color: #333;
+        }
+        .warning {
+            color: #ff4757;
+            font-size: 12px;
+            margin-top: 15px;
+            text-align: center;
+        }
+        .expired {
+            background: #ff4757;
+            color: white;
+            text-align: center;
+            padding: 50px;
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="content"></div>
+
+    <script>
+        if (sessionStorage.getItem('offer_viewed')) {
+            document.getElementById('content').innerHTML = `
+                <div class="expired">
+                    <h2>⏰ ऑफर समाप्त!</h2>
+                    <p>यह पेज सिर्फ एक बार देखा जा सकता है।</p>
+                    <p>📢 संपर्क: @SR_NOTES8</p>
+                </div>
+            `;
+        } else {
+            sessionStorage.setItem('offer_viewed', 'true');
+            
+            const html = `
+                <div class="card">
+                    <div class="timer-box">
+                        ⏳ यह पेज <strong>60 सेकंड</strong> में बंद हो जाएगा
+                        <div class="countdown" id="countdown">60</div>
+                    </div>
+                    
+                    <div class="content">
+                        <p>• सेम ऐसा group होगा।</p>
+                        <p>• जिसमें 09:00 AM, 02:00 PM, 04:00 PM को START होगा, अब इसमें होगा क्या ?</p>
+                        <p>• इसमें हम एक POLL डालेंगे जिसमें MOTA और PATLA लिखा होगा, MOTA मतलब BIG, PATLA मतलब SMALL।</p>
+                        <p>• इसमें सब अपना ANYLISES देंगे तुम भी अपना ANYLISES देना।</p>
+                        <p>• जिसका वोट ज्यादा वो RESULT FINAL</p>
+                        <p>• 1 DAY FREE होगा इसमें आप चेक कर सकते हो GROUP कैसा है।</p>
+                        <p>• अगले दिन आप मेरी लिंक से REGISTRATION करके ₹300 DEPOSIT करके SCREENSHOT भेजोगे तो में आपको 7 दिन के लिए GROUP में ADD कर दूंगा।</p>
+                        <p>• इसके बाद अगर आपको GROUP में रहना है तो 7 दिन की MEMBERSHIP लेनी होगी जिसकी प्राइस भी ₹300 है।</p>
+                        <p>• अगर फ्री TRIAL USE करना है, तो मैसेज करो YES.</p>
+                    </div>
+                    
+                    <a href="https://t.me/motapatla" class="btn">🔗 ग्रुप जॉइन करें</a>
+                    
+                    <div class="contact">
+                        📢 संपर्क: @SR_NOTES8
+                    </div>
+                    
+                    <div class="warning">
+                        ⚠️ यह पेज 60 सेकंड में बंद हो जाएगा!
+                    </div>
+                </div>
+            `;
+            
+            document.getElementById('content').innerHTML = html;
+            
+            let seconds = 60;
+            const countdownEl = document.getElementById('countdown');
+            
+            const timer = setInterval(() => {
+                seconds--;
+                if (countdownEl) countdownEl.textContent = seconds;
+                if (seconds <= 0) {
+                    clearInterval(timer);
+                    window.location.href = "https://t.me/SR_NOTES8";
+                }
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
